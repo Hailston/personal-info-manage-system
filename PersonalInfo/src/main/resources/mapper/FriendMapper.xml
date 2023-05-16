@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hngy.mapper.FriendMapper">
+<!--    insertOne-->
+    <insert id="insertOne">
+        insert into friend(username, name, phone, email, workplace, place, QQ)
+        values(#{username}, #{name}, #{phone}, #{email}, #{workplace}, #{place}, #{QQ})
+    </insert>
+
+    <select id="selectByUsernameAndName" resultType="com.hngy.entity.Friend">
+        select * from friend where username=#{username} and name like concat('%',#{name},'%')
+    </select>
+
+    <update id="updateFriendInfo">
+        update friend set
+            phone=#{phone},
+            email=#{email},
+            workplace=#{workplace},
+            place=#{place},
+            QQ=#{QQ}
+        where
+            username=#{username} and name=#{name}
+    </update>
+    <delete id="deleteFriendByUsernameAndName">
+        delete from friend where username=#{username} and name=#{name}
+    </delete>
+    <select id="listAll" resultType="com.hngy.entity.Friend">
+        select * from friend where username=#{username}
+    </select>
+    <select id="selectFriend" resultType="com.hngy.entity.Friend">
+        select * from friend where username=#{username} and name=#{name}
+    </select>
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hngy.mapper.FileMapper">
+<!--    List<File> listAll(@Param("username") String username);-->
+    <select id="listAll" resultType="com.hngy.entity.File">
+        select * from file
+    </select>
+<!-- File selectOne(@Param("username") String username, @Param("title") String title);-->
+    <select id="selectOne" resultType="com.hngy.entity.File">
+        select * from file where username=#{username} and title=#{title}
+    </select>
+<!--    int insertOne(File file);-->
+    <insert id="insertOne">
+        insert into file values(#{username},#{title},#{name},#{contentType},#{size}, #{filePath})
+    </insert>
+<!--   int deleteOne(@Param("username") String username, @Param("title") String title); -->
+    <delete id="deleteOne">
+        delete from file where username=#{username} and title=#{title}
+    </delete>
+
+</mapper>
